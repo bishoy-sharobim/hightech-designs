@@ -1,0 +1,722 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الدراسة بالمعهد | المعهد التكنولوچى العالى للعلوم الصحية التطبيقية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --navy:#13294b; --navy-2:#1c3a68; --gold:#c9a227; --gold-light:#e0c060;
+  --ink:#1c2b3c; --muted:#5c6b7a; --bg:#f5f7fa; --white:#fff; --line:#e2e8f0;
+  --red:#b4202f;
+  --radius:14px; --shadow:0 12px 34px rgba(19,41,75,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo','Segoe UI',Tahoma,sans-serif;color:var(--ink);line-height:1.85;background:var(--bg);font-size:16px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:var(--navy-2);transition:.25s}
+h1,h2,h3,h4{font-weight:900;line-height:1.4;color:var(--ink)}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--red);color:#fff;padding:13px 28px;border-radius:8px;font-weight:900;font-family:inherit;border:none;cursor:pointer;transition:all .25s}
+.btn:hover{background:#8f1825;transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--navy)}
+.btn-light:hover{background:var(--gold);color:var(--navy)}
+
+/* topbar */
+.topbar{background:var(--navy);color:rgba(255,255,255,.85);font-size:13px}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;padding:9px 24px;flex-wrap:wrap;gap:8px}
+.topbar a{color:rgba(255,255,255,.85);display:inline-flex;align-items:center;gap:6px;margin-inline-start:18px}
+.topbar a:hover{color:var(--gold-light)}
+.topbar .social{display:flex;gap:6px}
+.topbar .social span{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gold-light)}
+
+/* announcement */
+.announce{background:linear-gradient(90deg,var(--red),#8f1825);color:#fff;font-size:14.5px}
+.announce .container{display:flex;align-items:center;gap:14px;padding:10px 24px;flex-wrap:wrap}
+.announce b{font-weight:800}
+.announce a{color:#fff;background:rgba(255,255,255,.2);padding:3px 14px;border-radius:99px;font-weight:700}
+.announce .x{margin-inline-start:auto;cursor:pointer;font-size:20px;opacity:.85}
+
+/* header */
+.header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 4px 18px rgba(19,41,75,.08)}
+.header .container{display:flex;align-items:center;justify-content:space-between;min-height:88px;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:56px;width:auto}
+.brand .name{font-weight:900;font-size:15px;color:var(--navy);line-height:1.4}
+nav ul{list-style:none;display:flex;gap:2px}
+nav a{display:block;padding:11px 14px;border-radius:8px;color:var(--ink);font-weight:700;font-size:15px}
+nav a:hover,nav a.active{color:#fff;background:var(--navy)}
+.cta{background:var(--red);color:#fff;padding:12px 26px;border-radius:8px;font-weight:900}
+.cta:hover{background:#8f1825;color:#fff;transform:translateY(-2px)}
+@media(max-width:1024px){nav{display:none}.cta{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:70vh;display:flex;align-items:flex-end;overflow:hidden;border-bottom:6px solid var(--gold)}
+.hero .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s;z-index:1}
+.hero .slide.active{opacity:1;z-index:2}
+.hero .slide img{width:100%;height:100%;object-fit:cover}
+.hero .slide::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,41,75,.5),rgba(19,41,75,.86))}
+.hero .content{position:relative;z-index:3;width:100%;padding:90px 0 40px}
+.hero .titlebox{display:inline-block;background:rgba(255,255,255,.95);border-radius:16px;padding:34px 40px;max-width:640px;box-shadow:var(--shadow);border-top:5px solid var(--gold)}
+.hero .titlebox h1{font-size:clamp(1.6rem,3.6vw,2.5rem);color:var(--navy);margin-bottom:10px}
+.hero .titlebox p{color:var(--muted);margin-bottom:18px}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero .dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
+.hero .dots span{width:10px;height:10px;border-radius:99px;background:rgba(255,255,255,.45)}
+.hero .dots span.active{background:var(--gold);width:30px}
+
+/* stats */
+.stats{background:#fff;border-bottom:1px solid var(--line)}
+.stats .grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:34px 18px;text-align:center;border-inline-end:1px solid var(--line)}
+.stat:last-child{border-inline-end:none}
+.stat b{display:block;font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1}
+.stat b i{font-style:normal;color:var(--gold)}
+.stat small{color:var(--muted);font-weight:700;font-size:14px}
+@media(max-width:1024px){.stats .grid{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-inline-end:none}}
+
+/* section */
+.section{padding:80px 0}
+.section-head{text-align:center;max-width:640px;margin:0 auto 46px}
+.kicker{color:var(--red);font-weight:800;font-size:13px;letter-spacing:2px;margin-bottom:8px}
+.section-head h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px}
+.section-head p{color:var(--muted)}
+
+/* departments */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 22px 48px rgba(19,41,75,.18)}
+.card .img{height:230px;overflow:hidden;position:relative}
+.card .img img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.card:hover .img img{transform:scale(1.08)}
+.card .img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(19,41,75,.75))}
+.card .tag{position:absolute;bottom:12px;right:14px;z-index:2;color:#fff;font-weight:900;font-size:12.5px;background:rgba(201,162,39,.92);padding:4px 14px;border-radius:99px}
+.card .body{padding:24px 22px 26px}
+.card h3{font-size:1.2rem;margin-bottom:8px;color:var(--navy)}
+.card p{color:var(--muted);font-size:14.5px}
+.card .more{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--red);margin-top:12px}
+@media(max-width:1024px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.cards{grid-template-columns:1fr}}
+
+/* welcome/about */
+.welcome{background:#fff}
+.welcome .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+.welcome .media{position:relative}
+.welcome .media img{width:100%;border-radius:var(--radius);box-shadow:var(--shadow);aspect-ratio:4/3.4;object-fit:cover}
+.welcome .media::after{content:'';position:absolute;inset:20px -20px -20px 20px;border:3px solid var(--gold);border-radius:var(--radius);z-index:-1}
+.welcome .badge{position:absolute;bottom:-18px;right:-14px;background:var(--red);color:#fff;padding:16px 26px;border-radius:12px;text-align:center;box-shadow:var(--shadow)}
+.welcome .badge b{display:block;font-size:1.7rem;font-weight:900;line-height:1.1}
+.welcome .badge small{font-size:13px;font-weight:600}
+.welcome h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:16px}
+.welcome h2 span{color:var(--gold)}
+.welcome p{color:var(--muted)}
+.welcome ul{list-style:none;margin:18px 0 24px}
+.welcome ul li{display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:10px}
+.welcome ul li::before{content:'✓';width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--navy);font-size:13px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+@media(max-width:1024px){.welcome .grid{grid-template-columns:1fr;gap:44px}}
+
+/* objectives */
+.objectives{background:var(--bg)}
+.objectives .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch}
+.obj{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.obj .head{background:var(--navy);color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+.obj .head h3{color:#fff;font-size:1.15rem}
+.obj .head em{font-style:normal;font-family:monospace;color:var(--gold);font-weight:900}
+.obj .body{padding:24px 22px;flex:1}
+.obj .body ul{list-style:none}
+.obj .body ul li{position:relative;padding-right:26px;color:var(--muted);font-size:14.5px;margin-bottom:12px}
+.obj .body ul li::before{content:'';position:absolute;right:0;top:9px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.obj .body ul li b{color:var(--ink)}
+@media(max-width:1024px){.objectives .grid{grid-template-columns:1fr}}
+
+/* results */
+.results{padding:70px 0}
+.results .box{background:linear-gradient(120deg,var(--navy),var(--navy-2));border-radius:var(--radius);padding:46px 50px;display:flex;align-items:center;justify-content:space-between;gap:26px;color:#fff;flex-wrap:wrap;border-bottom:4px solid var(--gold)}
+.results h2{color:#fff}
+.results p{opacity:.88}
+
+/* contact */
+.contact{background:#fff;padding:60px 0;border-top:1px solid var(--line)}
+.contact .inner{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.contact h2{margin-bottom:4px}
+.contact p{color:var(--muted)}
+.contact .phones{display:flex;gap:20px;flex-wrap:wrap;margin-top:8px}
+.contact .phones a{font-weight:800;color:var(--navy)}
+@media(max-width:1024px){.contact .inner{grid-template-columns:1fr}}
+
+/* footer */
+.footer{background:var(--navy);color:rgba(255,255,255,.75);font-size:14.5px;border-top:5px solid var(--gold)}
+.footer .grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:40px;padding:58px 0 44px}
+.footer h4{color:#fff;font-size:1.05rem;margin-bottom:16px;position:relative;padding-bottom:10px}
+.footer h4::after{content:'';position:absolute;bottom:0;right:0;width:34px;height:3px;background:var(--gold);border-radius:3px}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:9px}
+.footer ul a{color:rgba(255,255,255,.75)}
+.footer ul a:hover{color:var(--gold-light)}
+.footer .brand img{height:48px;background:#fff;border-radius:8px;padding:5px;margin-bottom:14px}
+.footer .bottom{border-top:1px solid rgba(255,255,255,.12);padding:18px 0;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:1024px){.footer .grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.footer .grid{grid-template-columns:1fr}}
+
+/* whatsapp */
+.wa{position:fixed;bottom:24px;left:24px;z-index:40;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.45);color:#fff;font-weight:900;font-size:28px}
+.wa:hover{transform:scale(1.1)}
+
+/* animations */
+[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+[data-reveal].revealed{opacity:1;transform:none}
+
+
+.subpage-head{background:linear-gradient(120deg,#0e3a57,#1b5e8a);color:#fff;padding:60px 0 52px;text-align:center;margin-bottom:42px}
+.subpage-head h1{color:#fff;font-size:2rem}
+.subpage-head p{color:rgba(255,255,255,.85);max-width:640px;margin:8px auto 0}
+.subpage-title{font-size:1.2rem;margin:34px 0 16px;border-right:4px solid #a6192e;padding-right:14px}
+/* departments */
+.dept-cards{display:grid;gap:26px}
+.dept-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 14px 40px rgba(14,58,87,.12);display:grid;grid-template-columns:1fr 1.2fr;border:1px solid #e3e9ef}
+.dept-media{position:relative;min-height:260px}
+.dept-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.dept-no{position:absolute;top:16px;right:16px;background:rgba(14,58,87,.85);color:#fff;font-family:monospace;font-weight:900;padding:6px 14px;border-radius:10px;font-size:15px}
+.dept-body{padding:30px 28px}
+.dept-body h2{font-size:1.4rem;margin-bottom:4px}
+.dept-body h2 small{display:block;color:#a6192e;font-weight:700;font-size:.85rem;margin-top:4px}
+.dept-body p{color:#5b6b78;font-size:15.5px}
+/* study */
+.study-wrap{max-width:900px;margin:0 auto}
+.study-sec{background:#fff;border-radius:16px;padding:26px 28px;margin-bottom:18px;box-shadow:0 8px 26px rgba(14,58,87,.07);border:1px solid #e3e9ef}
+.study-sec h2{font-size:1.15rem;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.study-sec .sec-num{background:#1b5e8a;color:#fff;font-family:monospace;font-size:.85rem;padding:4px 12px;border-radius:8px;flex-shrink:0}
+.study-sec p{color:#5b6b78;font-size:15px;margin-bottom:10px}
+.study-sec p:last-child{margin-bottom:0}
+.study-sec ul{padding-right:1.2em;color:#5b6b78;font-size:15px}
+.study-sec ul li{margin-bottom:9px}
+.study-sec ul li:last-child{margin-bottom:0}
+/* about */
+.about-wrap{max-width:900px;margin:0 auto}
+.about-intro{background:#fff;border-radius:16px;padding:24px 28px;box-shadow:0 8px 26px rgba(14,58,87,.07);border:1px solid #e3e9ef;color:#5b6b78;font-size:16px;line-height:2;margin-bottom:26px}
+.about-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:30px}
+.about-col{background:#fff;border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 8px 26px rgba(14,58,87,.07);border:1px solid #e3e9ef}
+.about-icon{font-size:2rem;margin-bottom:10px}
+.about-col h3{font-size:1.1rem;margin-bottom:10px;color:#1b5e8a}
+.about-col p{color:#5b6b78;font-size:14px;line-height:1.9}
+.about-links{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.about-link{display:flex;align-items:center;gap:16px;background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 8px 26px rgba(14,58,87,.07);border:1px solid #e3e9ef;transition:.25s}
+.about-link:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(14,58,87,.14)}
+.about-link img{width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid rgba(27,94,138,.2);flex-shrink:0}
+.about-link b{display:block;color:#1b5e8a;font-size:1rem}
+.about-link small{color:#5b6b78;font-size:.8rem}
+/* words */
+.word-wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:.7fr 1.3fr;gap:30px;align-items:start}
+.word-portrait{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 26px rgba(14,58,87,.07);border:1px solid #e3e9ef;position:sticky;top:100px;text-align:center}
+.word-portrait img{width:100%;border-radius:12px;margin-bottom:12px}
+.word-body{background:#fff;border-radius:16px;padding:30px 28px;box-shadow:0 8px 26px rgba(14,58,87,.07);border:1px solid #e3e9ef}
+.word-body h2{font-size:1.3rem;margin-bottom:4px;text-align:center}
+.word-body .word-role{color:#a6192e;font-weight:700;text-align:center;margin-bottom:20px}
+.word-body p{color:#5b6b78;font-size:15.5px;line-height:2;margin-bottom:14px;text-align:center}
+.word-body p:last-of-type{margin-bottom:20px}
+.word-sign{border-top:1px solid #e3e9ef;padding-top:18px;text-align:center}
+.word-sign b{display:block;color:#1b5e8a;font-size:1.05rem}
+.word-sign span{color:#5b6b78;font-size:.9rem}
+@media(max-width:900px){.dept-card{grid-template-columns:1fr}.dept-media{min-height:220px}.about-cols,.about-links{grid-template-columns:1fr}.word-wrap{grid-template-columns:1fr}.word-portrait{position:static}}
+
+
+</style>
+</head>
+<body>
+
+
+
+<!-- topbar -->
+<div class="topbar">
+  <div class="container">
+    <div>
+      <a href="tel:01068376154">📞 01068376154</a>
+      <a href="tel:01064234560">📞 01064234560</a>
+      <a href="mailto:Info@HighTech-AHS.edu.eg">✉ Info@HighTech-AHS.edu.eg</a>
+    </div>
+    <div class="social"><span>فيسبوك</span><span>يوتيوب</span><span>واتساب</span><span>لينكد إن</span><span>أنستغرام</span></div>
+  </div>
+</div>
+
+<!-- announcement -->
+<div class="announce">
+  <div class="container">
+    <b>🔔 ظهرت نتيجة العام الدراسى 2025/2026</b>
+    <a href="https://htiahs.pythonanywhere.com" target="_blank" rel="noopener">عرض النتيجة ←</a>
+    <span class="x">✕</span>
+  </div>
+</div>
+
+<!-- header -->
+<header class="header">
+  <div class="container">
+    <a class="brand" href="#home"><img src="../assets/logo.jpg" alt=""><span class="name">المعهد التكنولوچى العالى<br>للعلوم الصحية التطبيقية</span></a>
+    <nav>
+      <ul>
+        <li><a href="#home" >الرئيسية</a></li>
+        <li><a href="about.html">عن المعهد</a></li>
+        <li><a href="study.html" class="active">الدراسة بالمعهد</a></li>
+        <li><a href="departments.html">أقسام المعهد</a></li>
+        <li><a href="album.html">ألبوم الصور</a></li>
+        <li><a href="jobs.html">وظائف خالية</a></li>
+        <li><a href="https://htiahs.pythonanywhere.com" target="_blank" rel="noopener">بوابة الطالب</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul>
+    </nav>
+    <a class="cta" href="contact.html">تواصل معنا</a>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero" id="home">
+  <div class="slide active"><img src="../assets/hero-1.jpg" alt=""></div>
+  <div class="slide"><img src="../assets/hero-3.jpg" alt=""></div>
+  <div class="slide"><img src="../assets/hero-2.jpg" alt=""></div>
+  <div class="content">
+    <div class="container">
+      <div class="titlebox">
+        <h1>المعهد التكنولوچى العالى<br>للعلوم الصحية التطبيقية</h1>
+        <p>نحن نؤمن بأن قوتنا في صنع مستقبلك بأيدينا — ك٣٦ طريق مصر الإسماعيلية الصحراوى، قرية عساكر، أمام مدينة الشروق، القاهرة</p>
+        <div class="actions">
+          <a class="btn" href="departments.html">أقسام المعهد</a>
+          <a class="btn btn-light" href="study.html">الدراسة بالمعهد</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dots"><span class="active"></span><span></span><span></span></div>
+</section>
+
+<!-- stats -->
+<section class="stats">
+  <div class="container">
+    <div class="grid">
+      <div class="stat"><b>4<i>+</i></b><small>سنوات دراسية</small></div>
+      <div class="stat"><b>128<i>+</i></b><small>ساعة معتمدة</small></div>
+      <div class="stat"><b>3<i>+</i></b><small>أقسام علمية</small></div>
+      <div class="stat"><b>120<i>+</i></b><small>طالب وطالبة</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- departments -->
+<section class="section" id="departments">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="kicker">برامجنا الأكاديمية</p>
+      <h2>أقسام المعهد</h2>
+      <p>ثلاثة أقسام علمية متخصصة بنظام الساعات المعتمدة</p>
+    </div>
+    <div class="cards">
+      <article class="card" data-reveal>
+        <div class="img"><span class="tag">التصوير الطبي</span><img src="../assets/dep-radio.jpg" alt=""></div>
+        <div class="body">
+          <h3>قسم علوم الأشعة</h3>
+          <p>يعمل هذا القسم على إعداد الطلاب في علوم الأشعة والتصوير الطبي، والقدرة على التعامل مع جميع أجهزة الأشعة التشخيصية والعلاجية.</p>
+          <a class="more" href="departments.html">المزيد ←</a>
+        </div>
+      </article>
+      <article class="card" data-reveal data-reveal-delay="120">
+        <div class="img"><span class="tag">التحاليل الطبية</span><img src="../assets/dep-labs.jpg" alt=""></div>
+        <div class="body">
+          <h3>قسم المختبرات الطبية</h3>
+          <p>يعمل هذا القسم على إعداد الطلاب في مجال التحاليل الطبية باستخدام التقنيات المتطورة للتعامل مع عينات الأنسجة والدم.</p>
+          <a class="more" href="departments.html">المزيد ←</a>
+        </div>
+      </article>
+      <article class="card" data-reveal data-reveal-delay="240">
+        <div class="img"><span class="tag">تعويضات سنية</span><img src="../assets/dep-dental.jpg" alt=""></div>
+        <div class="body">
+          <h3>قسم تركيبات الأسنان</h3>
+          <p>يعمل هذا القسم على إعداد الطلاب في تقنيات تركيبات الأسنان المختلفة من تحضير المواد وحتى التصنيع النهائي.</p>
+          <a class="more" href="departments.html">المزيد ←</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- about -->
+<section class="section welcome" id="about">
+  <div class="container">
+    <div class="grid">
+      <div class="media" data-reveal>
+        <img src="../assets/obj-general.jpg" alt="المعهد التكنولوچى العالى للعلوم الصحية التطبيقية">
+        <div class="badge"><b>128</b><small>ساعة معتمدة</small></div>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <p class="kicker">عن المعهد</p>
+        <h2>مرحبا بكم فى <span>المعهد التكنولوچى العالى</span> للعلوم الصحية التطبيقية</h2>
+        <p>معهد متخصص لإعداد كوادر فنية وتقنية مؤهلة في مجالات العلوم الصحية التطبيقية وفق أحدث المعايير العالمية.</p>
+        <ul>
+          <li>نظام الساعات المعتمدة الحديث</li>
+          <li>أربع سنوات دراسية للحصول على درجة البكالوريوس</li>
+          <li>التدريس باللغة الإنجليزية والعربية</li>
+          <li>بوابة طالب رقمية للجدول والنتيجة</li>
+        </ul>
+        <a class="btn" href="about.html">اعرف المزيد عنا</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- objectives -->
+<section class="section objectives" id="study">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="kicker">رؤيتنا وأهدافنا</p>
+      <h2>أهداف المعهد والدرجة العلمية</h2>
+    </div>
+    <div class="grid">
+      <div class="obj" data-reveal>
+        <div class="head"><h3>الأهداف العامة</h3><em>01</em></div>
+        <div class="body">
+          <ul>
+            <li>تكوين طبقة من المتخصصين في العلوم الصحية التطبيقية المعاونة القادرين على التعامل مع أدوات التكنولوجيا الحديثة.</li>
+            <li>إعادة تأهيل خريجي الكليات وبعض المعاهد طبقاً لحاجة سوق العمل.</li>
+            <li>توفير فرص التعليم المستمر للمتخصصين الفنيين والتقنيين والإداريين.</li>
+            <li>القيام بالدراسة الميدانية لخدمة البيئة والمجتمع في المجالات الصحية.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="obj" data-reveal data-reveal-delay="120">
+        <div class="head"><h3>الأهداف الخاصة</h3><em>02</em></div>
+        <div class="body">
+          <ul>
+            <li>أن يشارك بجدارة في التنافس التقني والفني المتطلب في القطاع الصحي الطبي الحكومي.</li>
+            <li>أن يساهم بفاعلية في دعم مخطط الدولة في قانون التأمين الصحي الجديد.</li>
+            <li>أن يتواصل عملياً مع القضايا المعاصرة ويتعامل بكفاءة مع الأجهزة الحديثة.</li>
+            <li>تأهيل وتدريب الكوادر الصحية ورفع كفاءاتها العلمية والعملية.</li>
+            <li>تلبية احتياجات المجتمع بالكوادر الفنية المؤهلة.</li>
+            <li>المساهمة في تخفيف الأعباء على الدولة من تكاليف تأهيل الكوادر الصحية.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="obj" data-reveal data-reveal-delay="240">
+        <div class="head"><h3>الدرجة العلمية</h3><em>03</em></div>
+        <div class="body">
+          <ul>
+            <li><b>شروط القبول:</b> الثانوية العامة علمي (علوم)، الثانوية الأزهرية علمي، دبلوم المعاهد الفنية الصحية بتقدير عام جيد.</li>
+            <li><b>النظام:</b> الدراسة بنظام الساعات المعتمدة وليس السنوات الدراسية.</li>
+            <li><b>الفصول:</b> الأول والثاني (16 أسبوعاً) والفصل الصيفي الاختياري (8 أسابيع بساعات مضاعفة).</li>
+            <li><b>المدة:</b> أربع سنوات (128 ساعة) للحصول على بكالوريوس "أخصائي تكنولوجي العلوم الصحية التطبيقية".</li>
+            <li><b>اللغة:</b> التدريس باللغة الإنجليزية والعربية والامتحان بنفس لغة التدريس.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- results -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="box" data-reveal>
+      <div>
+        <h2>نتيجة العام الدراسى 2025/2026</h2>
+        <p>ظهرت نتيجة العام الدراسى الأول — اتبع الرابط التالي مع تمنياتنا بالتوفيق الدائم لطلابنا.</p>
+      </div>
+      <a class="btn btn-light" href="https://htiahs.pythonanywhere.com" target="_blank" rel="noopener">عرض النتيجة ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <h2>تواصل معنا</h2>
+        <p>ك٣٦ طريق مصر الإسماعيلية الصحراوى – قرية عساكر – أمام مدينة الشروق – القاهرة</p>
+        <div class="phones">
+          <a href="tel:01068376154">01068376154</a>
+          <a href="tel:01064234560">01064234560</a>
+          <a href="tel:01110229695">01110229695</a>
+          <a href="mailto:Info@HighTech-AHS.edu.eg">Info@HighTech-AHS.edu.eg</a>
+        </div>
+      </div>
+      <a class="btn" href="contact.html">صفحة التواصل</a>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="brand"><img src="../assets/logo.jpg" alt=""></div>
+        <p>ك٣٦ طريق مصر الإسماعيلية الصحراوى – قرية عساكر – أمام مدينة الشروق – القاهرة</p>
+      </div>
+      <div>
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="about.html">عن المعهد</a></li>
+          <li><a href="departments.html">أقسام المعهد</a></li>
+          <li><a href="study.html">الدراسة بالمعهد</a></li>
+          <li><a href="album.html">ألبوم الصور</a></li>
+          <li><a href="jobs.html">وظائف خالية</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>أقسام المعهد</h4>
+        <ul>
+          <li><a href="departments.html">قسم علوم الأشعة</a></li>
+          <li><a href="departments.html">قسم المختبرات الطبية</a></li>
+          <li><a href="departments.html">قسم تركيبات الأسنان</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <ul>
+          <li><a href="tel:01068376154">01068376154</a></li>
+          <li><a href="tel:01064234560">01064234560</a></li>
+          <li><a href="tel:01110229695">01110229695</a></li>
+          <li><a href="mailto:Info@HighTech-AHS.edu.eg">Info@HighTech-AHS.edu.eg</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <div class="foot-qr">
+    <div class="foot-qr__card">
+      <img class="foot-qr__img" src="../assets/qr.png" alt="QR Code للموقع">
+      <div class="foot-qr__info">
+        <p class="foot-qr__text"><b>امسح الكود لمعرفة الموقع على الخريطة</b></p>
+        <p class="foot-qr__addr">ك٣٦ طريق مصر الإسماعيلية الصحراوى – قرية عساكر – أمام مدينة الشروق – القاهرة</p>
+        <a class="foot-qr__btn" href="https://www.google.com/maps?q=%D9%83%D9%8036+%D8%B7%D8%B1%D9%8A%D9%82+%D9%85%D8%B5%D8%B1+%D8%A7%D9%84%D8%A5%D8%B3%D9%85%D8%A7%D8%B9%D9%8A%D9%84%D9%8A%D8%A9+%D8%A7%D9%84%D8%B5%D8%AD%D8%B1%D8%A7%D9%88%D9%89+%D9%82%D8%B1%D9%8A%D8%A9+%D8%B9%D8%B3%D8%A7%D9%83%D8%B1+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9" target="_blank" rel="noopener">فتح في خرائط جوجل ←</a>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="bottom">
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>© 2026 المعهد التكنولوچى العالى للعلوم الصحية التطبيقية — جميع الحقوق محفوظة</span>
+      <span>تصميم: د. هيثم فاروق</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/201110229695" target="_blank" rel="noopener" aria-label="واتساب">✆</a>
+
+<script>
+var slides=document.querySelectorAll('.hero .slide'),cur=0;
+setInterval(function(){slides[cur].classList.remove('active');cur=(cur+1)%slides.length;slides[cur].classList.add('active');document.querySelectorAll('.dots span').forEach(function(d,i){d.classList.toggle('active',i===cur)})},6000);
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+var ax=document.querySelector('.announce .x');
+if(ax)ax.addEventListener('click',function(){document.querySelector('.announce').style.display='none'});
+var spyLinks=document.querySelectorAll('.header nav a[href^="#"]');
+window.addEventListener('scroll',function(){
+  var y=window.scrollY+140,cur='home';
+  document.querySelectorAll('section[id]').forEach(function(s){if(s.offsetTop<=y)cur=s.id;});
+  spyLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+});
+var rev=document.querySelectorAll('[data-reveal]');
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');obs.unobserve(e.target);}});
+  },{threshold:.1});
+  rev.forEach(function(el){obs.observe(el);});
+}else{rev.forEach(function(el){el.classList.add('revealed');});}
+</script>
+</body>
+</html
+
+<main class="section" style="padding-top:10px">
+  <div class="container">
+<div class="subpage-head"><h1>الدراسة بالمعهد</h1><p>نظام الساعات المعتمدة — لائحة الدراسة والامتحانات</p></div>
+<div class="study-wrap">
+  <section class="study-sec">
+    <h2><span class="sec-num">01</span> الدرجات العلمية</h2>
+    <ul>
+      <li>يمنح وزير التعليم العالي بناء على طلب المعهد درجة البكالوريوس "أخصائي تكنولوجي العلوم الصحية التطبيقية" في كل من التخصصات التالية:</li><li>علوم الأشعة: Radiology sciences</li><li>المختبرات الطبية: Medical laboratory</li><li>تركيبات الأسنان: Dental Laboratory</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">02</span> مدة الدراسة</h2>
+    <p>تكون مدة الدراسة بالمعهد أربع سنوات دراسية (128 ساعة) للحصول على درجة البكالوريوس "أخصائي تكنولوجي العلوم الصحية التطبيقية" فى التخصص.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">03</span> لغة الدراسة</h2>
+    <p>لغة التدريس للمقررات الدراسية للمواد العلمية التخصصية هي اللغة الإنجليزية والعربية، على أن يكون الامتحان بنفس لغة التدريس.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">04</span> قبول الطلاب</h2>
+    <p>يكون ترشيح الطلاب النظاميين من أبناء جمهورية مصر العربية بالمعهد عن طريق مكتب تنسيق القبول للجامعات والمعاهد المصرية، ويكون ترشيح الطلاب من غير أبناء جمهورية مصر العربية طبقًا للنظام العام للدولة الذي تقرره وزارة التعليم العالي.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">05</span> يقبل المعهد الطلاب الحاصلين علي المؤهلات الآتية:</h2>
+    <ul>
+      <li>الثانوية العامة علمي (علوم) وما يعادلها من الشهادات العربية والأجنبية للمرحلة الأولى.</li><li>الثانوية الأزهرية علمي.</li><li>دبلوم المعاهد فوق المتوسط للمعاهد الفنية الصحية بتقدير عام جيد، وذلك للمرحلة الثانية.</li><li>لا يجوز للطالب أن يقيد اسمه فى أكثر من معهد فى وقت واحد، ولا يجوز له أن يجمع بين القيد فى معهد غير تابع لوزارة التعليم العالي أو أي كلية جامعية، ولا يجوز إعادة قيد الطالب بأي معهد للحصول على شهادة سبق له الحصول عليها، كما لا يجوز إعادة قيده للحصول على شهادة أخرى من معهد أو كلية مماثلة.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">06</span> تحويل الطلاب ونقل قيدهم</h2>
+    <ul>
+      <li>يجوز تحويل ونقل الطلاب إلى المعهد من كليات جامعية أو معاهد مناظرة بشرط الحصول على الحد الأدنى لمجموع الدرجات سنة الحصول على المؤهل، وبما لا يتعارض مع القواعد والضوابط التي تحددها وزارة التعليم العالي.</li><li>يجوز أن يقبل بالمعهد الطلاب الذين استنفدوا مرات الرسوب في الكليات والمعاهد الأخرى وفقًا للقواعد الآتية:</li><li>أن يكون الطالب مقيدًا بالكلية أو المعهد في السنة الدراسية السابقة لسنة التحاقه بالمعهد.</li><li>أن يكون الطالب حاصلًا على مؤهل بمجموع يؤهله للالتحاق بالمعهد في عام حصوله على تلك الشهادة.</li><li>يكون التحاق هؤلاء الطلاب بالمستوى الأول مستجدين.</li><li>التحويل من الكليات العسكرية: يجوز نقل قيد الطلاب المفصولين بغير الطريق التأديبي من الكليات العسكرية وكلية الشرطة لعدم الصلاحية للحياة العسكرية أو المفصولين لاستنفاد مرات الرسوب إلى المعهد مستجدين بالمستوى الأول بشرط أن يكون الطالب حاصلًا على المجموع الكلي الذي وصل إليه القبول بالمعهد سنة حصوله على المؤهل أو سنة الفصل أيهما أفضل للطالب.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">07</span> نظام الدراســـــة والامتحــانات</h2>
+    <p>الدراسة بنظام الساعات المعتمدة وليس نظام السنوات الدراسية.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">08</span> العام الدراسي والفصول الدراسية</h2>
+    <ul>
+      <li>تقوم الدراسة بالمعهد علي نظام الفصول الدراسية علي النحو التالي:</li><li>الفصل الدرسي الأول</li><li>الفصل الدراسي الثانى</li><li>الفصل الدراسي الصيفى (وهو فصل إختيارى للطالب)</li><li>وتكون مدة الفصل الدراسي الواحد الأول أو الثاني (16 أسبوعاً دراسياً بما فيها الامتحانات).</li><li>بينما الفصل الدراسي الصيفي فتكون مدته (8 أسابيع دراسية بساعات مضاعفة بما فيها الإمتحانات).</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">09</span> تأجيل الدراسة أو الأنقطاع عنها</h2>
+    <ul>
+      <li>يجوز للطالب أن يتقدم بطلب لتأجيل دراسته (وقف قيده) قبل بدء الفصل الدراسي الذي يرغب تأجيل دراسته فيه بسبب عذر يقبله مجلس إدارة المعهد.</li><li>لا يجوز أن تزيد مدة التأجيل عن فصلين دراسيين متتاليين أو ثلاثة فصول متفرقة.</li><li>لا يجوز للطالب تأجيل الدراسة في الفصل الدراسي الأول لالتحاقه بالمعهد.</li><li>إذا بدأت الدراسة في أي من الفصول الدراسية الرئيسية ولم يكن الطالب مسجلًا في ذلك الفصل يعتبر منقطعًا عن الدراسة، ويعتبر تسجيله في المعهد ملغى إلا إذا تقدم بعذر قهري يقبله مجلس المعهد.</li><li>إذا وقعت العقوبة التأديبية بالفصل المؤقت على أي طالب لمدة فصل دراسي أو أكثر فتعد هذه المدة انقطاعًا عن الدراسة.</li><li>المعهد يوجل التجنيد حتى سن 28 عاماَ.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">10</span> فرص القيد</h2>
+    <ul>
+      <li>لا يجوز للطالب أن يقضي في المستوى الواحد أكثر من سنتين ولمجلس إدارة المعهد السماح لطلاب:</li><li>المستوى الثاني بتأدية الامتحان من الخارج في السنة التالية كفرصة أخيرة.</li><li>أما المستويان الثالث والرابع فيسمح فيهما بتأدية الامتحان ثلاث فرص من الخارج.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">11</span> إيقاف القيد</h2>
+    <p>يجوز لمجلس إدارة المعهد أن يوقف قيد الطالب لمدة سنتين دراسيتين خلال فترة دراسته بالمعهد إذا تقدم بعذر مقبول يمنعه من الانتظام في الدراسة ويجوز للجنة القطاع زيادة مدة الوقف.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">12</span> الإرشاد الأكاديمي</h2>
+    <p>يخصص مرشد أكاديمي من بين أعضاء هيئة التدريس لكل مجموعة من الطلاب عند الالتحاق بالدراسة، ويمكن أن يستمر معهم حتى نهاية الدراسة، حيث يقوم المرشد الأكاديمي بمعاونة الطالب في وضع خطته الدراسية ومتابعة أدائه وإسداء النصيحة إليه ومعاونته في اختيار المقررات لكل فصل دراسي وتحديد عدد الساعات المعتمدة التي يسجل فيها، وذلك حسب الضوابط الواردة في لائحة المعهد، ويعتبر رأي المرشد الأكاديمي استشاريًّا، ويظل الطالب هو المسئول عن المقررات التي يقوم بالتسجيل فيها بناء علي رغبته.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">13</span> العبء الدراسي</h2>
+    <ul>
+      <li>العبء الدراسي هو مجموع الساعات المعتمدة التي يسمح للطالب بتسجيلها في الفصل الدراسي الواحد بحيث يكون:</li><li>الحد الأدنى للساعات المعتمدة التي يدرسها الطالب في كل من الفصلين الدراسيين الأول والثاني هو (13 ساعة معتمدة) ويجوز تخفيضه للطالب بناءً على توصية المرشد الأكاديمي وموافقة عميد المعهد إذا كان لديه عذر مقبول.</li><li>الحد الأقصى للساعات المعتمدة التي يدرسها الطالب في كل من الفصلين الدراسيين الأول والثاني هو (19 ساعة معتمدة).</li><li>الحــــد الأقصى للساعات المعتمدة التي يدرسها الطالب في الفصل الدراسي الصيفي لا تزيد عن (6 ساعات معتمدة) بما لا يزيد عن مادتين.</li><li>يجوز للطالب تسجيل 3 ساعات معتمدة إضافية عن الحد الأقصى فى حدود مادة آخرى إذا كان تخرجه يتوقف على ذلك.</li><li>يمكن للطالب أن ينهي دراسته في أقل من المدة النمطية، وكذلك يمكن للطالب ذى الظروف الخاصة إنهاء برنامج دراسته في مدة لا تتعدى ضعفي المدة النمطية.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">14</span> إنذار الطالب وفصله من المعهد</h2>
+    <ul>
+      <li>يتم إنذار كل طالب يحصل على معدل تراكمي أقل من (D) باستثناء الفصل الدراسي الأول من التحاقه بالمعهد.</li><li>لا يسمح للطالب المنذر أكاديميًّا بالتسجيل في الفصل الدراسي التالي لأكثر من 12 ساعة معتمدة.</li><li>على الطالب الذي قد وجه له إنذار أكاديمي أن يرفع معدله التراكمي إلى (D) فأكثر لإلغاء مفعول الإنذار الأكاديمي، وذلك في مدة أقصاها فصلان دراسيان من تاريخ الإنذار.</li><li>يفصل الطالب إذا أخفق في رفع المعدل التراكمي إلى (D) بعد مرور مدة الفصلين الدراسيين.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">15</span> التسجيل</h2>
+    <p>على الطالب أن يقوم بالتسجيل للفصل الدراسي وفقًا للتقويم الدراسي الذي يحدده المعهد، وذلك بناءً على موافقة المرشد الأكاديمي واعتماد عميد المعهد ، ويُعد المعهد التقويم الدراسي السنوي ويعلنه للطلاب على الموقع الإلكتروني للمعهد، ويقوم الطالب بتسجيل المقررات الدراسية التي يختارها من خلال نماذج طلب التسجيل بمعرفة المرشد الأكاديمي قبل بداية كل فصل دراسي.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">16</span> التسجيل المتأخر</h2>
+    <p>في حالة تقدم الطلاب للتسجيل بعد بداية الفصل الدراسي يتم عرض حالتهم على لجنة شئون التعليم والطلاب ثم مجلس إدارة المعهد للنظر في سبب تأخرهم ويعتبرون غائبين عن الفترة السابقة ما لم يتقدموا بأعذار يقبلها مجلس إدارة المعهد، ويكونوا مسئولين عن تحصيل المواد العلمية للفترة السابقة، ويوقع على المتأخرين عن التسجيل رسم التسجيل المتأخر الذي يحدده مجلس إدارة المعهد.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">17</span> المتطلب السابق</h2>
+    <ul>
+      <li>هو مقرر يشترط استكماله لدراسة مقرر لاحق وتنطبق عليه الشروط التالية:</li><li>لا يجوز للطالب أن يدرس مقررًا ما قبل أن يدرس متطلبه السابق.</li><li>لا يجوز للطالب أن يسجل مقررًا متزامنًا مع متطلبه السابق إلا إذا كان قد درس المتطلب السابق نجاحًا أو رسوبًا، أو كان تخرجه يتوقف على ذلك، وذلك بعد موافقة المرشد الأكاديمي وعميد المعهد.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">18</span> الإضافة والحذف والانسحاب</h2>
+    <ul>
+      <li>يسمح للطالب بالقيام بإجراءات الحذف والإضافة خلال الفترة المحددة لذلك في الحالات التالية:</li><li>إذا قام بتغيير تخصصه.</li><li>إذا كان تخرجه متوقعًا في الفصل الدراسي الذي سجل فيه، وكانت عملية الحذف والإضافة ضرورية لتخرجه.</li><li>بعد موافقة المرشد الأكاديمي، يمكن للطالب إضافة مقرر أو أكثر خلال الأسبوعين الأول والثاني من بدء الفصل الدراسي مع مراعاة الحد الأقصى للعبء الدراسي الفصلي.</li><li>يجوز للطالب الانسحاب من مقررات دراسية تم التسجيل فيها خلال أسبوعين على الأكثر من بداية الفصل الدراسي، ويحصل على تقدير (منسحب) وذلك في المقررات التي انسحب منها بحيث لا يقل عدد الساعات المسجلة للطالب عن الحد الأدنى للتسجيل في الفصل الدراسي الواحد، أما إذا انسحب بعد هذه المواعيد فيعتبر راسبا (F) ويتم أخذ ذلك في الاعتبار عند حساب معدل نقاطه التراكمي.</li><li>الطالب الذي يرغب في الانسحاب من الفصل الدراسي بالكامل لظروف المرض أو بعذر يقبله مجلس إدارة المعهد عليه التقدم لشئون التعليم والطلاب للحصول على موافقة المعهد على الانسحاب ولا تدخل المقررات التي انسحب منها الطالب في حساب المعدل التراكمي ويحصل على تقدير (منسحب) فيها ويقوم بإعادة هذه المقررات وامتحانها في فصل دراسي لاحق بعد دفع رسوم الخدمة التعليمية المقررة.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">19</span> إعادة دراسة المقررات</h2>
+    <ul>
+      <li>يجوز للطالب إعادة دراسة أي مقرر إجباري أو اختياري سبق نجاحه فيه، وذلك لتحسين الدرجة ورفع معدله التراكمي، وتكون الإعادة دراسة وامتحانًّا بعد تسديد الرسوم التعليمية المقررة على أن يكون المقرر مطروحًا في الفصل الدراسي، ويحتسب للطالب التقدير الذي حصل عليه في الإعادة وعند حساب معدل نقاطه التراكمي يحتسب له التقدير الأخير فقط، على أن تذكر جميع التقديرات التي حصل عليها الطالب في سجله الدراسي.</li><li>يسمح للطالب بالإعادة خلال فصلين دراسيين رئيسيين من دراسة الطالب للمقرر.</li><li>إذا رسب الطالب في الإعادة يعتبر راسبًا في المقرر ويجب عليه دراسة هذا المقرر في فصل دراسي لاحق دراسة وامتحانًا بعد سداد الرسوم التعليمية المقررة.</li><li>المقرر الذي درسه الطالب ضمن المقررات الاختيارية ورسب فيه يجوز أن يُستبدَلَ به مقرر اختياري آخروفق الخطة الدراسية المعمول بها فى المعهد ويعتبر مقررًا جديدًا ويحصل فيه على درجته كاملة.</li><li>إذا نجح الطالب فى المقرر عند إعادته لا يجوز إعادته مرة أخرى.</li><li>لا يسمح بإعادة المقررات التي تم قبول تحويلها من معاهد أخرى.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">20</span> الحضور والمواظبة</h2>
+    <p>يجب على الطالب أن يحقق نسبة حضور لا تقل عن 75% من إجمالي الساعات لكل مقرر على حدة، وإذا تجاوزت نسبة الغياب في أحد المقررات 25% من إجمالي عدد الساعات لكل مقرر يكون لمجلس إدارة المعهد الحق في حرمانه من دخول الامتحان النهائي في هذا المقرر، ويعتبر راسبًا في المقررات التي حرم من امتحانها إلا إذا تقدم بعذر يقبله مجلس إدارة المعهد.</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">21</span> المقرر غير المكتمل</h2>
+    <ul>
+      <li>يسجل الطالب الرمز "IC" غير مكتمل، وذلك إذا تعذر على الطالب إكمال متطلبات المقرر لعذر قهري يقبله (مجلس المعهد).</li><li>بسبب واحدة من الحالات التالية:</li><li>المرض أو العمليات الجراحية التي تستدعي المكوث بالمستشفى.</li><li>وفاة قريب من الدرجتين الأولى والثانية.</li><li>الولادة.</li><li>وقوع الامتحانات النهائية فى الفترة المحددة لتجديد الإقامة بالنسبة للوافدين.</li><li>على الطالب أن يقدم الأوراق الثبوتية اللازمة لمجلس المعهد وبعد اعتمادها من لجنة شئون التعليم والطلاب خلال أسبوع من تاريخ انعقاد الامتحان، وإلا يعتبر الطالب راسبًا في هذا المقرر.</li><li>الطالب مسئول عن المتابعة لإكمال متطلبات المقرر قبل بداية الفصل الدراسي التالي وقبل بداية التسجيل فى المستوى الذى يليه مع الاحتفاظ بتقديره فى هذا المقرر كاملًا ويدخل ضمن حساب المتوسط العام له.</li><li>إذا لم يتمكن الطالب من إكمال متطلبات المقرر قبل نهاية الفصل الدراسي التالي يعتبر الطالب راسبًا فى هذا المقرر ويتغير الرمز إلى "F".</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">22</span> مرتبة الشرف والمنح الدراسية</h2>
+    <p>يتم ترتيب الطلاب وفقًا للمعدل التراكمي لمتوسط النقاط وتمنح مرتبة الشرف للطالب الحاصل على معدل تراكمي من 3.25 فأكثر عند التخرج بشرط ألا يكون الطالب قد رسب فى أى مقرر دراسي خلال تسجيله فى المعهد (أو الكلية أو المعهد المحول منه).</p>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">23</span> التدريب والإمتياز</h2>
+    <ul>
+      <li>يؤدي الطالب فترة التدريب المطلوبة تحت إشراف إدارة المعهد وتكون فترة التدريب على النحو التالي:</li><li>بالنسبة للمستوى الثاني: تكون فترة التدريب ستة أسابيع، بعد أن يجتاز هذا المستوى بنجاح.</li><li>بالنسبة للمستوى الثالث: تكون فترة التدريب ستة أسابيع، بعد أن يجتاز هذا المستوى بنجاح.</li><li>الإمتياز: ستة أشهر بعد إجتياز المستوي الرابع بنجاح.</li><li>يخضع الطالب لفترة تدريب / الأمتياز أربعة أيام أسبوعيًّا على ألا تقل ساعات التدريب عن ستة ساعات يوميًّا وذلك في الأماكن المعتمدة التي يحددها مجلس إدارة المعهد.</li><li>إذا كان التقييم أقل من نسبة مرضٍ يتم توجيه المتدرب لإعادة التدريب / الأمتياز.</li>
+    </ul>
+  </section>
+  <section class="study-sec">
+    <h2><span class="sec-num">24</span> نظام التقييم</h2>
+    <p>يتم تقييم الطالب من خلال الفصل الدراسي وإمتحان آخر الفصل، وتمثل أعمال الفصل الدراسي جزء من الدرجة النهائية وتتمثل في امتحانات دورية وتمارين نظرية وعملية وبحوث ويتم تقييم الطالب في المقررات التطبيقية "المشروع" بدون إختبار تحريري لنهاية الفصل الدراسي، ويتم عقد اختبار شفوي يتضمن تقييم التقرير المقدم من الطالب والأعمال العملية المنفذة من خلال لجنة المناقشة.</p>
+  </section></div></div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="brand"><img src="../assets/logo.jpg" alt=""></div>
+        <p>ك٣٦ طريق مصر الإسماعيلية الصحراوى – قرية عساكر – أمام مدينة الشروق – القاهرة</p>
+      </div>
+      <div>
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="about.html">عن المعهد</a></li>
+          <li><a href="departments.html">أقسام المعهد</a></li>
+          <li><a href="study.html">الدراسة بالمعهد</a></li>
+          <li><a href="album.html">ألبوم الصور</a></li>
+          <li><a href="jobs.html">وظائف خالية</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>أقسام المعهد</h4>
+        <ul>
+          <li><a href="departments.html">قسم علوم الأشعة</a></li>
+          <li><a href="departments.html">قسم المختبرات الطبية</a></li>
+          <li><a href="departments.html">قسم تركيبات الأسنان</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <ul>
+          <li><a href="tel:01068376154">01068376154</a></li>
+          <li><a href="tel:01064234560">01064234560</a></li>
+          <li><a href="tel:01110229695">01110229695</a></li>
+          <li><a href="mailto:Info@HighTech-AHS.edu.eg">Info@HighTech-AHS.edu.eg</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <div class="foot-qr">
+    <div class="foot-qr__card">
+      <img class="foot-qr__img" src="../assets/qr.png" alt="QR Code للموقع">
+      <div class="foot-qr__info">
+        <p class="foot-qr__text"><b>امسح الكود لمعرفة الموقع على الخريطة</b></p>
+        <p class="foot-qr__addr">ك٣٦ طريق مصر الإسماعيلية الصحراوى – قرية عساكر – أمام مدينة الشروق – القاهرة</p>
+        <a class="foot-qr__btn" href="https://www.google.com/maps?q=%D9%83%D9%8036+%D8%B7%D8%B1%D9%8A%D9%82+%D9%85%D8%B5%D8%B1+%D8%A7%D9%84%D8%A5%D8%B3%D9%85%D8%A7%D8%B9%D9%8A%D9%84%D9%8A%D8%A9+%D8%A7%D9%84%D8%B5%D8%AD%D8%B1%D8%A7%D9%88%D9%89+%D9%82%D8%B1%D9%8A%D8%A9+%D8%B9%D8%B3%D8%A7%D9%83%D8%B1+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9" target="_blank" rel="noopener">فتح في خرائط جوجل ←</a>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="bottom">
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>© 2026 المعهد التكنولوچى العالى للعلوم الصحية التطبيقية — جميع الحقوق محفوظة</span>
+      <span>تصميم: د. هيثم فاروق</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/201110229695" target="_blank" rel="noopener" aria-label="واتساب">✆</a>
+
+
+
+
+<a class="wa" href="https://wa.me/201110229695" target="_blank" rel="noopener" aria-label="واتساب">✆</a>
+</body>
+</html>
