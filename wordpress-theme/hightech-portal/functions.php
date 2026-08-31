@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 /**
- * HighTech Portal — functions & asset loading
+ * HighTech Portal â€” functions & asset loading
  *
  * @package hightech-portal
  */
@@ -23,11 +23,11 @@ function hightech_assets() {
 	$uri = get_template_directory_uri();
 
 	/* i18n dictionaries must load BEFORE the engine so HTI18N_CONTENT merges in. */
-	wp_enqueue_script( 'hti18n-content', $uri . '/assets/i18n-content.js', array(), '1.1', false );
-	wp_enqueue_script( 'hti18n', $uri . '/assets/i18n.js', array( 'hti18n-content' ), '1.1', false );
-	wp_enqueue_script( 'hightech-main', $uri . '/assets/main.js', array( 'hti18n' ), '1.1', true );
+	wp_enqueue_script( 'hti18n-content', $uri . '/assets/i18n-content.js', array(), '1.2', false );
+	wp_enqueue_script( 'hti18n', $uri . '/assets/i18n.js', array( 'hti18n-content' ), '1.2', false );
+	wp_enqueue_script( 'hightech-main', $uri . '/assets/main.js', array( 'hti18n' ), '1.2', true );
 
-	wp_enqueue_style( 'hightech-main', $uri . '/assets/main.css', array(), '1.1' );
+	wp_enqueue_style( 'hightech-main', $uri . '/assets/main.css', array(), '1.2' );
 	wp_enqueue_style(
 		'hightech-fonts',
 		'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Manrope:wght@400;600;700;800&display=swap',

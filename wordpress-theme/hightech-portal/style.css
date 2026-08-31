@@ -11,6 +11,9 @@ Text Domain: hightech-portal
 /* ============================================================
    HighTech AHS — Design 2 (Admin Portal / Navy Glassmorphism)
    Shared theme — design-2/assets/main.css
+/* ============================================================
+   HighTech AHS — Design 2 (Admin Portal / Navy Glassmorphism)
+   Shared theme — design-2/assets/main.css
    Fonts: Cairo (AR) / Manrope (EN-FR) — logical CSS properties for RTL/LTR
    ============================================================ */
 
@@ -91,7 +94,7 @@ h1,h2,h3,h4{font-weight:800;line-height:1.45;color:var(--txt)}
 
 /* ============ SIDE NAV ============ */
 .sidenav{
-  position:fixed;top:0;bottom:0;inset-inline-end:0;width:var(--side);z-index:50;
+  position:fixed;top:0;bottom:0;right:0;width:var(--side);z-index:50;
   background:var(--side-grad);color:#c7d5f0;display:flex;flex-direction:column;
   box-shadow:0 0 40px rgba(2,6,23,.45);overflow:hidden;
 }
@@ -115,7 +118,7 @@ h1,h2,h3,h4{font-weight:800;line-height:1.45;color:var(--txt)}
   display:flex;align-items:center;gap:12px;color:#b9c8e8;padding:11px 14px;border-radius:12px;
   font-weight:700;font-size:.93rem;transition:all .25s ease;border-inline-start:3px solid transparent;
 }
-.side-links a:hover{background:rgba(255,255,255,.08);color:#fff;transform:translateX(calc(var(--flip,1)*4px))}
+.side-links a:hover{background:rgba(255,255,255,.08);color:#fff;transform:translateX(-4px)}
 .side-links a.active{
   background:linear-gradient(135deg,rgba(37,99,235,.9),rgba(34,211,238,.65));
   color:#fff;box-shadow:0 6px 18px rgba(34,211,238,.35);border-inline-start-color:var(--amber);
@@ -146,7 +149,7 @@ h1,h2,h3,h4{font-weight:800;line-height:1.45;color:var(--txt)}
 }
 
 /* ============ MAIN ============ */
-.main{margin-inline-end:var(--side)}
+.main{margin-right:var(--side)}
 
 /* ============ TOPBAR ============ */
 .topbar{
@@ -364,7 +367,7 @@ h1,h2,h3,h4{font-weight:800;line-height:1.45;color:var(--txt)}
 
 /* ============ WHATSAPP FLOAT ============ */
 .wa{
-  position:fixed;bottom:24px;inset-inline-end:24px;z-index:45;width:54px;height:54px;border-radius:50%;
+  position:fixed;bottom:24px;left:24px;z-index:45;width:54px;height:54px;border-radius:50%;
   background:linear-gradient(135deg,#25d366,#0ba360);display:flex;align-items:center;justify-content:center;
   box-shadow:0 10px 28px rgba(37,211,102,.5);color:#fff;font-weight:900;font-size:24px;
   transition:all .25s;animation:wabob 2.6s ease-in-out infinite;
@@ -532,11 +535,11 @@ h1,h2,h3,h4{font-weight:800;line-height:1.45;color:var(--txt)}
 
 @media(max-width:1100px){
   .sidenav{
-    inset-inline-end:calc(-1*var(--side) - 40px);transition:inset-inline-end .35s ease;
+    right:calc(-1*var(--side) - 40px);transition:right .35s ease;
     width:min(var(--side),86vw);box-shadow:none;
   }
-  .sidenav.open{inset-inline-end:0;box-shadow:0 0 60px rgba(2,6,23,.5)}
-  .main{margin-inline-end:0}
+  .sidenav.open{right:0;box-shadow:0 0 60px rgba(2,6,23,.5)}
+  .main{margin-right:0}
   .menu-toggle{display:flex;align-items:center;justify-content:center}
   .hero .inner{padding:52px 0 64px}
   .contact-wrap,.loc-wrap{grid-template-columns:1fr}
